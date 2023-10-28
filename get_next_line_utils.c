@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: huates <huates@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 13:03:47 by huates            #+#    #+#             */
+/*   Updated: 2023/10/28 13:08:33 by huates           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-int ft_strlen(char *str)
+int ft_strlen(const char *str)
 {
     int i;
 
@@ -8,35 +20,6 @@ int ft_strlen(char *str)
     while (str[i])
         i++;
     return (i);
-}
-
-char *ft_strjoin(char *left_str, char *buff)
-{
-    size_t i;
-    size_t j;
-    char *str;
-
-    if (!left_str)
-    {
-        left_str = (char *)malloc(sizeof(char) * 1);
-        left_str[0] = '\0';
-    }
-    if (!left_str || !buff)
-        return (NULL);
-    str = (char *)malloc(sizeof(char) * ft_strlen(left_str) + ft_strlen(buff) + 1);
-    if (!str)
-        return (NULL);
-         
-    i = -1;
-    j = 0;
-    if (left_str)
-        while(left_str[++i])
-            str[i] = left_str[i];
-    while (buff[j])
-        str[i++] = buff[j++];
-    str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
-    free(left_str);
-    return (str);
 }
 
 char *ft_strchr(char *s, int c)
@@ -54,6 +37,33 @@ char *ft_strchr(char *s, int c)
             return ((char *)&s[i]);
     }
     return (0);
+}
+
+char *ft_strjoin(char *str1, char *str2)
+{
+    size_t i;
+    size_t j;
+    char *str;
+
+    i = -1;
+    j = 0;
+    if (!str1)
+    {
+        str1 = (char *)malloc(sizeof(char) * 1); // str1 NULL ise 1 byte yer ayırıyor ve ilk byte'ı NULL yapıyor.
+        str1[0] = '\0';
+    }
+    if (!str1 || !str2)
+        return (NULL);
+    str = (char *)malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2)) + 1);
+    if (!str)
+        return (NULL);
+    while (str1[++i])
+        str[i] = str1[i];
+    while (str2[j])
+        str[i++] = str2[j++];
+    str[ft_strlen(str1) + ft_strlen(str2)] = '\0';
+    free(str1);
+    return (str);
 }
 
 int newline_counter(char *str)
