@@ -6,7 +6,7 @@
 /*   By: huates <huates@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:56:47 by huates            #+#    #+#             */
-/*   Updated: 2023/10/28 14:09:20 by huates           ###   ########.fr       */
+/*   Updated: 2023/10/30 14:07:48 by huates           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*gets_line(char *stack);
 char	*new_line(char *str);
 char	*read_line(int fd, char *stack);
 int		newline_counter(char *str);
+char *free_and_null(char *buffer, char *stack);
 
 #endif

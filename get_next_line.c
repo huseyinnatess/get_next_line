@@ -6,7 +6,7 @@
 /*   By: huates <huates@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:57:08 by huates            #+#    #+#             */
-/*   Updated: 2023/10/28 14:09:54 by huates           ###   ########.fr       */
+/*   Updated: 2023/10/30 14:13:00 by huates           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*read_line(int fd, char *stack)
 		read_byte = read(fd, buffer, BUFFER_SIZE);
 		if (read_byte == -1)
 		{
-			free(buffer);
+			stack = free_and_null(buffer, stack);
 			return (NULL);
 		}
 		buffer[read_byte] = '\0';
@@ -91,12 +91,20 @@ char	*new_line(char *stack)
 	return (new_stack);
 }
 
+char *free_and_null(char *buffer, char *stack)
+{
+	free(buffer);
+	free(stack);
+	stack = NULL;
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*stack;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > 2147483647)
 		return (NULL);
 	stack = read_line(fd, stack);
 	if (!stack)
