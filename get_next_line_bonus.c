@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huates <huates@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 16:08:45 by kkanyilm          #+#    #+#             */
-/*   Updated: 2023/11/01 17:01:04 by huates           ###   ########.fr       */
+/*   Created: 2023/10/28 11:44:38 by kkanyilm          #+#    #+#             */
+/*   Updated: 2023/11/01 16:55:53 by huates           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
-#include <unistd.h>
-	
+#include "get_next_line_bonus.h"
+
 static char	*ft_copy_to_stack(char *stack, char *buffer)
 {
 	char	*new_stack;
@@ -52,14 +50,14 @@ static char	*gets_line(char *stack)
 
 	i = 0;
 	if (!stack)
-		return (0);
+		return (ft_free_stack(&stack, 0));
 	while (stack[i] != '\n')
 		i++;
 	line = (char *)malloc(sizeof(char) * (i + 2));
 	if (!line)
-		return (NULL);
+		return (ft_free_stack(&line, 0));
 	j = 0;
-	while (j < (i + 1))
+	while (j < i + 1)
 	{
 		line[j] = stack[j];
 		j++;
@@ -68,7 +66,7 @@ static char	*gets_line(char *stack)
 	return (line);
 }
 
-static char	*new_line(char *stack)
+static char	*new_linr(char *stack)
 {
 	size_t	i;
 	char	*new_stack;
@@ -94,31 +92,27 @@ char	*get_next_line(int fd)
 {
 	char		buffer[BUFFER_SIZE + 1];
 	long		read_byte;
-	static char	*stack = NULL;
+	static char	*stack [1024];
 	char		*line;
 
 	line = 0;
-
-	printf("%d", BUFFER_SIZE);
-	return (0);
 	read_byte = BUFFER_SIZE;
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (ft_free_stack(&stack, 0));
+		return (ft_free_stack(&stack[fd], 0));
 	while (read_byte > 0)
 	{
 		read_byte = read(fd, buffer, BUFFER_SIZE);
-		if ((read_byte <= 0 && !stack) || read_byte == -1)
-			return (ft_free_stack(&stack, 0));
+		if ((read_byte <= 0 && !stack[fd]) || read_byte == -1)
+			return (ft_free_stack(&stack[fd], 0));
 		buffer[read_byte] = '\0';
-		stack = ft_copy_to_stack(stack, buffer);
-		if (newline_counter(stack))
+		stack[fd] = ft_copy_to_stack(stack[fd], buffer);
+		if (newline_counter(stack[fd]))
 		{
-			line = gets_line(stack);
+			line = gets_line(stack[fd]);
 			if (!line)
-				return (ft_free_stack(&stack, 0));
-			return (stack = new_line(stack), line);
-	
+				return (ft_free_stack(&stack[fd], 0));
+			return (stack[fd] = new_linr(stack[fd]), line);
 		}
 	}
-	return (ft_free_stack(&stack, 1));
+	return (ft_free_stack(&stack[fd], 1));
 }

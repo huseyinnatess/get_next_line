@@ -5,27 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: huates <huates@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 13:50:19 by huates            #+#    #+#             */
-/*   Updated: 2023/10/28 14:04:26 by huates           ###   ########.fr       */
+/*   Created: 2023/11/01 12:59:48 by huates            #+#    #+#             */
+/*   Updated: 2023/11/01 16:33:05 by huates           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int	main(void)
 {
 	int		fd;
-	char	*stack;
+	char	*line;
 	int		i;
 
-	i = 1;
+	i = 0;
 	fd = open("test.txt", O_RDONLY);
-	stack = get_next_line(fd);
-	while (fd && stack)
+	while (i < 4)
 	{
-		printf("%d. Satir: %s\n", i++, stack);
-		stack = get_next_line(fd);
+		line = get_next_line(fd);
+		printf("%s", line);
+		free(line);
+		i++;
 	}
-	close(fd);
 	return (0);
 }
