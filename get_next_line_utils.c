@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: huates <huates@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 16:09:05 by kkanyilm          #+#    #+#             */
-/*   Updated: 2023/11/01 16:40:40 by huates           ###   ########.fr       */
+/*   Created: 2023/11/02 14:13:25 by huates            #+#    #+#             */
+/*   Updated: 2023/11/02 14:13:30 by huates           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <string.h>
 
 size_t	ft_strlen(const char *s)
 {
@@ -70,7 +69,7 @@ char	*ft_substr(char const *stack, unsigned int start, size_t len)
 		return (NULL);
 	i = start;
 	j = 0;
-	while (i < len && j < len)
+	while (i < len && j < len) // i < len diyoruz sebebinide bir zahmet siz anlayın
 	{
 		new_line[j] = stack[i];
 		i++;

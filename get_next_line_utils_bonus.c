@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkanyilm <42kocaeli.com.tr>                +#+  +:+       +#+        */
+/*   By: huates <huates@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 11:45:08 by kkanyilm          #+#    #+#             */
-/*   Updated: 2023/10/28 11:45:15 by kkanyilm         ###   ########.tr       */
+/*   Created: 2023/11/02 14:12:59 by huates            #+#    #+#             */
+/*   Updated: 2023/11/02 14:13:07 by huates           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,42 +22,36 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *buffer)
 {
-	size_t	len;
-	char	*dup;
+	char	*stack;
 	int		i;
 
 	i = 0;
-	len = ft_strlen(s) + 1;
-	dup = (char *)malloc(len);
-	if (!dup)
+	stack = (char *)malloc(ft_strlen(buffer) + 1);
+	if (!stack)
 		return (NULL);
-	while (*s)
-		dup[i++] = *s++;
-	dup[i] = '\0';
-	return (dup);
+	while (*buffer)
+		stack[i++] = *buffer++;
+	stack[i] = '\0';
+	return (stack);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *stack, char const *buffer)
 {
-	size_t	len1;
-	size_t	len2;
 	size_t	i;
 	char	*new_str;
 
-	if (!s1 || !s2)
+	if (!stack || !buffer)
 		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	new_str = (char *)malloc(len1 + len2 + 1);
+	new_str = (char *)malloc(ft_strlen(stack) + ft_strlen(buffer) + 1);
 	if (!new_str)
 		return (NULL);
 	i = 0;
-	while (*s1)
-		new_str[i++] = *s1++;
-	while (*s2)
-		new_str[i++] = *s2++;
+	while (*stack)
+		new_str[i++] = *stack++;
+	while (*buffer)
+		new_str[i++] = *buffer++;
 	new_str[i] = '\0';
 	return (new_str);
 }
@@ -89,26 +83,26 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (res);
 }
 
-void	*ft_free_stash(char **stash, int create_line)
+void	*ft_free_stack(char **stack, int create_line)
 {
 	char	*line;
 
-	if (!*stash)
+	if (!*stack)
 		return (NULL);
 	if (create_line == 0)
 	{
-		if (*stash)
+		if (*stack)
 		{
-			free(*stash);
-			*stash = NULL;
+			free(*stack);
+			*stack = NULL;
 		}
 		return (NULL);
 	}
 	else if (create_line == 1)
 	{
-		line = ft_strdup(*stash);
-		free(*stash);
-		*stash = NULL;
+		line = ft_strdup(*stack);
+		free(*stack);
+		*stack = NULL;
 		return (line);
 	}
 	return (NULL);

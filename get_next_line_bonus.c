@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: huates <huates@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 11:44:38 by kkanyilm          #+#    #+#             */
-/*   Updated: 2023/11/01 16:55:53 by huates           ###   ########.fr       */
+/*   Created: 2023/11/02 14:13:39 by huates            #+#    #+#             */
+/*   Updated: 2023/11/02 14:13:41 by huates           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "get_next_line_bonus.h"
+#include <unistd.h>
 
 static char	*ft_copy_to_stack(char *stack, char *buffer)
 {
@@ -36,7 +38,7 @@ static int	newline_counter(char *s)
 	if (!s)
 		return (0);
 	i = -1;
-	while (s[++i] != '\0')
+	while (s[++i])
 		if (s[i] == '\n')
 			return (1);
 	return (0);
@@ -66,7 +68,7 @@ static char	*gets_line(char *stack)
 	return (line);
 }
 
-static char	*new_linr(char *stack)
+static char	*new_line(char *stack)
 {
 	size_t	i;
 	char	*new_stack;
@@ -111,8 +113,9 @@ char	*get_next_line(int fd)
 			line = gets_line(stack[fd]);
 			if (!line)
 				return (ft_free_stack(&stack[fd], 0));
-			return (stack[fd] = new_linr(stack[fd]), line);
+			return (stack[fd] = new_line(stack[fd]), line);
 		}
 	}
 	return (ft_free_stack(&stack[fd], 1));
 }
+// Readme okuyunuz.

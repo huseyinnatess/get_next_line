@@ -5,30 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: huates <huates@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 11:45:29 by kkanyilm          #+#    #+#             */
-/*   Updated: 2023/11/01 17:01:47 by huates           ###   ########.fr       */
+/*   Created: 2023/11/02 14:13:50 by huates            #+#    #+#             */
+/*   Updated: 2023/11/02 14:13:53 by huates           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# include <unistd.h>
-# include <stdlib.h>
-
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
+#  define BUFFER_SIZE 3
 # endif
 
 # ifndef NUM_OF_FD
 #  define NUM_OF_FD 1024
 # endif
 
+# include <stdlib.h>
+
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_free_stash(char **stash, int create_line);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *buffer);
+char	*ft_strjoin(char const *stack, char const *buffer);
+void	*ft_free_stack(char **stack, int create_line);
+char	*ft_substr(char const *stack, unsigned int start, size_t len);
 
 #endif
