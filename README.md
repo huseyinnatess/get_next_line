@@ -11,6 +11,7 @@ Get Next Line, okuma işlemi sırasında bir dosyadan bir satır okurken bellekt
 - `get_next_line.c`: Ana get_next_line fonksiyonunu içeren C kaynak kodu dosyası.
 - `get_next_line.h`: Fonksiyonun prototipini ve gerekli kütüphaneleri içeren başlık dosyası.
 - `main.c`: Projenin test edilmesi için örnek bir sürüm dosyası.
+- `test.txt`: Projenin test edilmesi için örnek bir test dosyası.
 - `Makefile`: Projeyi derlemek için kullanılacak make dosyası.
 - `get_next_line_utils.c`: Yardımcı fonksiyonları içeren C kaynak kodu dosyası.
 - `get_next_line_utils.h`: Yardımcı fonksiyonların prototiplerini içeren başlık dosyası.
@@ -20,3 +21,4 @@ Get Next Line, okuma işlemi sırasında bir dosyadan bir satır okurken bellekt
 ## Nasıl Kullanılır?
 
 1. Bu projeyi GitHub üzerinden klonlayın:
+   
