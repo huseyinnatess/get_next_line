@@ -21,4 +21,6 @@ Get Next Line, okuma işlemi sırasında bir dosyadan bir satır okurken bellekt
 ## Nasıl Kullanılır?
 
 1. Bu projeyi GitHub üzerinden klonlayın:
-   
+```sh
+int pthread_mutex_lock(pthread_mutex_t *mutex);
+```
