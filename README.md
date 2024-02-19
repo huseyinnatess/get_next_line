@@ -22,5 +22,5 @@ Get Next Line, okuma işlemi sırasında bir dosyadan bir satır okurken bellekt
 
 1. Bu projeyi GitHub üzerinden klonlayın:
 ```sh
-https://github.com/huseyinnatess/get_next_line.git)https://github.com/huseyinnatess/get_next_line.git
+https://github.com/huseyinnatess/get_next_line.git
 ```
