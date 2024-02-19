@@ -21,7 +21,7 @@ Get Next Line, okuma işlemi sırasında bir dosyadan bir satır okurken bellekt
 ## Nasıl Kullanılır?
 
 1. Bu projeyi GitHub üzerinden klonlayın:
-2. 
+
 ```sh
 https://github.com/huseyinnatess/get_next_line.git
 ```
